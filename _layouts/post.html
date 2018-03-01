@@ -7,8 +7,8 @@ layout: default
 {% else %} 
 {% assign thumbnailStatus = false %} 
 {% endif %}
-<div class="barba-container" data-namespace="post">
-	<div class="mdc-card kmdc-card mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+<div class="barba-container mdc-layout-grid__inner" data-namespace="post">
+	<div class="mdc-card kmdc-card mdc-layout-grid__cell mdc-layout-grid__cell--span-10">
 		<div class="mdc-card__media mdc-card__media--square kmdc-card__media mdc-ripple-surface {% if thumbnailStatus %} mdc-theme--primary-bg mdc-theme--text-primary-on-primary{% endif %}"
 		 style="background-image: url({{page.thumbnail}});">
 
@@ -33,10 +33,19 @@ layout: default
 		</div>
 		<hr class="mdc-list-divider">
 		<div class="kmdc-card__posts-content mdc-typography--body2">
-			<span>
+			<span class="js-toc-content">
 				{{ content }}
 			</span>
 		</div>
 	</div>
-
+	<div class="mdc-layout-grid__cell--span-2">
+		<nav class="js-toc"></nav>
+	</div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+    main.addBlank();
+	main.tocBot();
+});
+</script>

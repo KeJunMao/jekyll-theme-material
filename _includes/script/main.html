@@ -1,12 +1,114 @@
 <script>
-var main = new Object();
-main.installMenu = function(a,b){
-    var menuEl = document.querySelector(a);
-    if (!menuEl) return;
-    var menu = new mdc.menu.MDCMenu(menuEl);
-    var menuButtonEl = document.querySelector(b);
-    menuButtonEl.addEventListener('click', function () {
-        menu.open = !menu.open;
-    });
-}
+    var main = new Object();
+    main.getEl = function (a) {
+        return document.querySelector(a);
+    }
+    main.getNameSpace = function () {
+        return this.getEl(".barba-container").dataset.namespace;
+    }
+    main.loadCss = function (href, callback) {
+        var hrefArray = href.split("?")[0].split("/");
+        var href_href = hrefArray[hrefArray.length - 1];
+
+        // 判断要添加的css是否存在如果存在则不继续添加了
+        var css = document.getElementsByTagName("link");
+        if (!!css && 0 != css.length) {
+            for (var i = 0; i < css.length; i++) {
+                if (-1 != css[i].href.indexOf(href_href)) {
+                    return true;
+                }
+            }
+        }
+
+        // 不存在需要的则添加
+        var head = document.getElementsByTagName("head")[0];
+        var css = document.createElement("link");
+        css.setAttribute("rel", "stylesheet");
+        css.setAttribute("href", href);
+        head.appendChild(css);
+    }
+    main.loadJs = function (src, callback) {
+        var srcArray = src.split("?")[0].split("/");
+        var scr_src = srcArray[srcArray.length - 1];
+
+        // 判断要添加的脚本是否存在如果存在则不继续添加了
+        var scripts = document.getElementsByTagName("script");
+        if (!!scripts && 0 != scripts.length) {
+            for (var i = 0; i < scripts.length; i++) {
+                if (-1 != scripts[i].src.indexOf(scr_src)) {
+                    callback();
+                    return true;
+                }
+            }
+        }
+
+        // 不存在需要的则添加
+        var head = document.getElementsByTagName("head")[0];
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        script.setAttribute("src", src);
+        script.setAttribute("async", true);
+        script.setAttribute("defer", true);
+        head.appendChild(script);
+
+        //fuck ie! duck type
+        if (document.all) {
+            script.onreadystatechange = function () {
+                var state = this.readyState;
+                if (state === 'loaded' || state === 'complete') {
+                    callback();
+                }
+            };
+        } else {
+            //firefox, chrome
+            script.onload = function () {
+                callback();
+            };
+        }
+    }
+    main.installMenu = function (a, b) {
+        var menuEl = this.getEl(a);
+        if (!menuEl) return;
+        var menu = new mdc.menu.MDCMenu(menuEl);
+        var menuButtonEl = document.querySelector(b);
+        menuButtonEl.addEventListener('click', function () {
+            menu.open = !menu.open;
+        });
+    }
+    main.addBlank = function () {
+        var postContentEl = this.getEl(".kmdc-card__posts-content");
+        if (!postContentEl) return;
+        if (this.getNameSpace() != "post") return;
+        [].forEach.call(postContentEl.querySelectorAll('a'), function (e) {
+            e.setAttribute("target", "_blank");
+        });
+    }
+    main.tocBot = function () {
+        var _this = this;
+        var init = function () {
+            tocbot.init({
+                // Where to render the table of contents.
+                tocSelector: '.js-toc',
+                // Where to grab the headings to build the table of contents.
+                contentSelector: '.js-toc-content',
+                positionFixedSelector: '.js-toc',
+                // Which headings to grab inside of the contentSelector element.
+                headingSelector: 'h1, h2, h3',
+                fixedSidebarOffset: document.querySelector(".js-toc").offsetTop + 50
+            });
+        }
+        this.loadCss("https://cdn.bootcss.com/tocbot/4.2.1/tocbot.css");
+        this.loadJs("https://cdn.bootcss.com/tocbot/4.2.1/tocbot.js", function () {
+            if (_this.getEl(".js-toc") != null) {
+                init();
+            } else {
+                if (window.tocbot) {
+                    document.removeEventListener('scroll', tocbot._scrollListener, false)
+                    document.removeEventListener('resize', tocbot._scrollListener, false)
+                    document.removeEventListener('click', tocbot._clickListener, false)
+                }
+            }
+        });
+    }
+
 </script>

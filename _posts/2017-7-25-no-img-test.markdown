@@ -20,6 +20,8 @@ thumbnail:
   <p>这行文本包含内联代码 <code>&lt;code&gt;</code></p>
   <p>按下 <kbd>Esc</kbd> 可以关闭对话框</p>
   <p><var>y</var> = <var>m</var><var>x</var> + <var>b</var></p>
+  
+---
 
 Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
 

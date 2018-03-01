@@ -1,21 +1,5 @@
 <script src="https://cdn.bootcss.com/barba.js/1.0.0/barba.min.js"></script>
 <script>
-    // var Homepage = Barba.BaseView.extend({
-    //     namespace: 'home',
-    //     onEnter: function () {
-    //         // The new Container is ready and attached to the DOM.
-    //     },
-    //     onEnterCompleted: function () {
-            
-    //     },
-    //     onLeave: function () {
-    //         // A new Transition toward a new page has just started.
-    //     },
-    //     onLeaveCompleted: function () {
-    //         // The Container has just been removed from the DOM.
-    //     }
-    // });
-    // Homepage.init();
     var Blogpost = Barba.BaseView.extend({
         namespace: 'post',
         onEnterCompleted: function (){
@@ -25,9 +9,11 @@
     Blogpost.init();
     Barba.Pjax.init();
     Barba.Prefetch.init();
-    Barba.Dispatcher.on('transitionCompleted', function () {
+    Barba.Dispatcher.on('transitionCompleted', function (a,b) {
         window.mdc.autoInit();
         main.installMenu('#kmdc-menu','#kmdc-menu-button');
+        main.addBlank();
+        main.tocBot();
     });
     Barba.Dispatcher.on('newPageReady', function (a,b,c,d) {
         c.classList.add("move");
