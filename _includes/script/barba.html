@@ -28,6 +28,7 @@
         fadeOut: function () {
             var el = this.oldContainer;
             el.classList.add("move");
+            NProgress.start();
             return new Promise(function(resolve, reject) {
                     setTimeout(resolve, 500, 'foo');
             });
@@ -35,6 +36,7 @@
 
         fadeIn: function () {
             this.done();
+            NProgress.done();
             var el = this.newContainer;
             el.classList.remove("move");
         }

@@ -1,0 +1,53 @@
+{% if page.toc == nil %}
+{% assign toc = true %}
+{% else if page.toc == false %}
+{% assign toc = false %}
+{% endif %}
+
+{% comment %} 判断是否有thumbnail {% endcomment %} 
+{% if page.thumbnail == "" or page.thumbnail == null %} 
+{% assign thumbnailStatus = true %}
+{% else %} 
+{% assign thumbnailStatus = false %} 
+{% endif %}
+
+<div class="mdc-card kmdc-card mdc-layout-grid__cell  mdc-layout-grid__cell--span-{% if toc %}10{% else %}12{% endif %}">
+		<div class="mdc-card__media mdc-card__media--square kmdc-card__media mdc-ripple-surface {% if thumbnailStatus %} mdc-theme--primary-bg mdc-theme--text-primary-on-primary{% endif %}"
+		 style="background-image: url({{page.thumbnail}});">
+
+			<div class="mdc-card__media-content kmdc-card__media-content--title">
+				{% if thumbnailStatus %}
+				<div class="kmdc-card__media-only-title">
+					<p class="mdc-typography--title">{{page.title}}</p>
+				</div>
+				{% else %}
+				<div class="kmdc-card__media-title mdc-typography--title">
+					{{page.title}}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="kmdc-card__meta">
+			<div class="kmdc-card__meta-avatar" style="background-image: url(https://ooo.0o0.ooo/2017/05/26/5928368d409dd.png);"></div>
+			<div class="kmdc-card__meta-text">
+				<strong>KeJun</strong>
+				<span class="mdc-typography--body1">Jul 24, 2017</span>
+			</div>
+		</div>
+		<hr class="mdc-list-divider">
+		<div class="kmdc-card__posts-content mdc-typography--body2">
+			<span class="js-toc-content">
+				{{ content }}
+			</span>
+		</div>
+	</div>
+	<div class="mdc-layout-grid__cell--span-2 {% if toc %}{%else%}hide{% endif %}">
+		<nav class="js-toc"></nav>
+    </div>
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        main.addBlank();
+        main.tocBot();
+    });
+</script>

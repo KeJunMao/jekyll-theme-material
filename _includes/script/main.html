@@ -84,6 +84,8 @@
         });
     }
     main.tocBot = function () {
+        var mobile = window.innerWidth <= 839;
+        if (mobile) return;
         var _this = this;
         var init = function () {
             tocbot.init({

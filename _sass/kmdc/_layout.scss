@@ -74,8 +74,9 @@
             font-family: "Roboto Mono", monospace;
         }
         table:not(.rouge-table){
+            overflow: overlay;
+            display: block;
             margin: 0 0 1.2em 0;
-            position: relative;
             width: 100%;
             border-spacing: 0;
             border-collapse: separate;
@@ -83,6 +84,7 @@
             border: 1px solid rgba(0,0,0,.12);
             border-top: none;
             th{
+                width: 100%;
                 overflow: hidden;
                 font-size: 13px;
                 font-weight: 700;
@@ -141,6 +143,9 @@
     }
 }
 .js-toc{
+    @media (max-width: 839px) and (max-width: 479px) {
+        display: none;
+    }
     font-family: Roboto,sans-serif;
     margin-top: 326px;
     .toc-link{
@@ -198,6 +203,49 @@ figure.highlight{
             padding: 0;
         }
     }
+}
+.hide{
+    display: none;
+}
+.kmdc-footer{
+    height: 155px;
+    background-color: var(--mdc-theme-background,#fff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    flex-flow: row wrap;
+    ul{
+        padding: 0;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        list-style-type: none;
+        li{
+            margin-left: .5em;
+            margin-right: .5em;
+        }
+        a{
+            text-decoration: none;
+            color: #757575 !important;
+            margin: 0 8px;
+            font-weight: 400;
+            font-size: 12px;        
+        }
+    }
+}
+.kmdc-progress{
+    position: fixed;
+    top: -1px;
+    width: 100%;
+    display: none;
+    z-index: 1;
+    transition: all 500ms;
 }
 
 .barba-container{
