@@ -2,6 +2,7 @@
 layout: default 
 ---
 <div class="kmdc-blog__posts  mdc-layout-grid__inner barba-container" data-namespace="home">
+    {% include search.html %}
     {% if paginator.page == 1%}
         {% include moe/head-card.html %}
     {% endif %}

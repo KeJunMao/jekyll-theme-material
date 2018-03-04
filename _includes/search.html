@@ -1,0 +1,27 @@
+<button class="mdc-fab material-icons kmdc-search">
+    <span class="mdc-fab__icon">
+        search
+    </span>
+    <div class="kmdc-search-content">
+        <h3 class="mdc-typography--title">搜索</h3>
+        <div class="mdc-text-field">
+            <i class="material-icons mdc-text-field__icon" tabindex="0">search</i>
+            <input type="text" id="my-text-field" class="mdc-text-field__input">
+            <label class="mdc-text-field__label" for="my-text-field"></label>
+            <div class="mdc-line-ripple"></div>
+        </div>
+    </div>
+</button>
+
+<script>
+    var searchEl = document.getElementsByClassName("kmdc-search")[0];
+    function addbox(e) {
+        e.cancelBubble = true;
+        searchEl.classList.toggle("box");
+    }
+    document.body.addEventListener("click",function(){
+        searchEl.classList.remove("box");
+    })
+    searchEl.addEventListener("click",addbox);
+    document.getElementsByClassName("kmdc-search-content")[0].addEventListener("click",function(e){e.cancelBubble = true;});
+</script>
