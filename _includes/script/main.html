@@ -112,5 +112,18 @@
             }
         });
     }
+    main.initSearch = function () {
+        var searchEl = this.getEl(".kmdc-search");
+        if(searchEl === null ) return;
+        function addbox(e) {
+            e.cancelBubble = true;
+            searchEl.classList.toggle("box");
+        }
+        document.body.addEventListener("click", function () {
+            searchEl.classList.remove("box");
+        })
+        searchEl.addEventListener("click", addbox);
+        document.getElementsByClassName("kmdc-search-content")[0].addEventListener("click", function (e) { e.cancelBubble = true; });
+    }
 
 </script>
