@@ -3,7 +3,7 @@ body{
     background-color: #eee;
 }
 main{
-    padding-top: 0;
+    padding-top: 0px;
     transition: all 500ms;
     @media (max-width: 839px) and (min-width: 480px){
         padding-top: 80px;
@@ -13,6 +13,12 @@ main{
     }
 
 }
+@media (max-width: 479px){
+    .kmdc-max-width {
+        padding: 0;
+    }
+}
+
 
 ::-webkit-scrollbar {
     width: 5px;

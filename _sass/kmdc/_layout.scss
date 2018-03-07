@@ -3,6 +3,10 @@
 }
 
 .kmdc-search{
+    margin-top: 10px;
+    @media (min-width: 840px){
+        margin-top: 0;
+    }
     z-index: 1;
     transition:margin-bottom 0.25s cubic-bezier(.4, 0, .2, 1);
     .mdc-fab:not(.mdc-ripple-upgraded):focus:before{
@@ -18,11 +22,12 @@
 
     }
     &.box{
-        margin-bottom: 56px;
+        margin-bottom: 66px;
         button{
             width: 100%;
             border-radius: 5px;
             right: 0;
+            top: 10px;
             .mdc-fab__icon{
                 display: none;
             }
