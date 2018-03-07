@@ -3,7 +3,7 @@ body{
     background-color: #eee;
 }
 main{
-    padding-top: 20px;
+    padding-top: 0;
     transition: all 500ms;
     @media (max-width: 839px) and (min-width: 480px){
         padding-top: 80px;

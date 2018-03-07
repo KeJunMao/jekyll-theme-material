@@ -114,10 +114,12 @@
     }
     main.initSearch = function () {
         var searchEl = this.getEl(".kmdc-search");
-        if(searchEl === null ) return;
+        if (searchEl === null) return;
         function addbox(e) {
             e.cancelBubble = true;
-            searchEl.classList.toggle("box");
+            searchEl.classList.add("box");
+            window.scrollTo(0,0);
+            main.getEl("#search-box").focus();
         }
         document.body.addEventListener("click", function () {
             searchEl.classList.remove("box");
