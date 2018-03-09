@@ -89,17 +89,13 @@
         var _this = this;
         var init = function () {
             tocbot.init({
-                // Where to render the table of contents.
                 tocSelector: '.js-toc',
-                // Where to grab the headings to build the table of contents.
                 contentSelector: '.js-toc-content',
                 positionFixedSelector: '.js-toc',
-                // Which headings to grab inside of the contentSelector element.
                 headingSelector: 'h1, h2, h3',
-                fixedSidebarOffset: document.querySelector(".js-toc").offsetTop + 50
+                fixedSidebarOffset: document.querySelector(".js-toc").offsetTop - 100
             });
         }
-        this.loadCss("https://cdn.bootcss.com/tocbot/4.2.1/tocbot.css");
         this.loadJs("https://cdn.bootcss.com/tocbot/4.2.1/tocbot.js", function () {
             if (_this.getEl(".js-toc") != null) {
                 init();
