@@ -1,0 +1,9 @@
+- text: "Hosted By"
+  url:
+    name: "Netlify"
+    link: "https://netlify.com"
+
+- text: "Author "
+  url:
+    name: KeJun
+    link: "https://kejun.me"

@@ -1,10 +1,41 @@
+{% comment %} 页脚 {% endcomment %}
+{% assign footer = site.data.footer %}
+
 <footer class="kmdc-footer mdc-theme--text-primary-on-primary">
-    <ul>
-        <li>
-            <a href="#">hello</a>
-        </li>
-        <li>
-            <a href="#">hello</a>
-        </li>
-    </ul>
+    <div class="kmdc-footer-content">
+        <ul>
+            {% for icon in footer.icon %}
+            {% if icon.url != null %}
+            <li class="kmdc-footer-icon">
+                <a target="_blank" class="k-{{ icon.name }}" href="{{icon.url}}"></a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <ul class="kmdc-footer-url">
+            <li>
+                <span>Powered by </span>
+                <a target="_blank" href="#">Jekyll</a>
+            </li>
+            <li>
+                <span>Theme by </span>
+                <a target="_blank" href="#">Material</a>
+            </li>
+            {% for url in footer.url %}
+            <li>
+                <span>{{url.text}}</span>
+                <a target="_blank" href="{{url.url.link}}">{{url.url.name}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <hr class="mdc-list-divider">
+    <div class="kmdc-footer-info">
+        <p>
+            {{footer.info.left-text}}
+        </p>
+        <p>
+            {{footer.info.right-text}}
+        </p>
+    </div>
 </footer>
